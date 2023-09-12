@@ -1,0 +1,39 @@
+@use "sass:map";
+
+@import 'variables';
+
+@mixin flexCenter($vertical: true, $horizontal: true) {
+    display: flex;
+    @if ($vertical == true) {
+        align-items: center;
+    }
+    @if ($horizontal == true) {
+        justify-content: center;
+    }
+}
+
+@mixin wh100 {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin wh($size) {
+    width: $size;
+    height: $size;
+}
+
+@mixin media-breakpoint-up($breakpoint) {
+    $width: map.get($grid-breakpoints, $breakpoint);
+
+    @media (min-width: $width) {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+    $width: map.get($grid-breakpoints, $breakpoint);
+
+    @media (max-width: #{$width - 0.02px}) {
+        @content;
+    }
+}
